@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import uuid from "uuid";
 import { TodoList } from "./TodoList";
+import { fetchTodos } from './GetRequestActions';
+import {postTodo} from './PostRequestActions'
 
 
 const addTodo = todo => {
@@ -26,13 +28,26 @@ export class TodoInput extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.fetchTodos()
+    // console.log("res")
+    // console.log(this.props)
+  }
   clickResetButton = e => {
     this.props.resetTodo();
   };
   clickAddButton = e => {
     // console.log(this.state);
-    console.log(this.props);
-    this.props.addTodo(this.state.todo);
+    // console.log(this.props);
+    // this.props.addTodo(this.state.todo);
+    this.props.postTodo(this.state.todo)
+    this.setState({ todo: {
+        subject: "",
+        description: "",
+        is_completed: false
+      }
+    });
+
   };
   onChangeSubject = e => {
     let tmp_todo = { ...this.state.todo };
@@ -91,11 +106,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // console.log(fetchTodos())
   return {
-    addTodo: todo => dispatch(addTodo(todo))
+    addTodo: todo => dispatch(addTodo(todo)),
     // removeTodo: del_id => dispatch(removeTodo(del_id)),
     // updateTodo: update_todo => dispatch(updateTodo(update_todo)),
-    // fetchTodos: () => dispatch(fetchTodos()),
-    // postTodo: (todo) => dispatch(postTodo(todo))
+    fetchTodos: () => dispatch(fetchTodos()),
+    postTodo: (todo) => dispatch(postTodo(todo))
     // onClickMinus: () => dispatch(actionDecrementAsync()),
   };
 };

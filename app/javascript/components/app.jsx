@@ -12,26 +12,17 @@ import $ from "jquery";
 // import "./styles.css";
 
 
-class App2 extends React.Component {
-  constructor(props) {
-    super(props);
-    
-  }
-  render(){
-  return (
-    <h1>hoge</h1>  
-    
-    );
-  }
-}
+
 
 const App = () => {
   return (
     <div className="App">
-      <h1>Todo App</h1>
-      <h2>What are you going to do today?</h2>
-      <div className="container">
-        
+      <div className="container mt-4">
+        <div className="mx-auto text-center" style={{width: "500px"}}>
+          <h1>Todo App</h1>
+          <h2>What are you going to do today?</h2>
+        </div>
+          
         <Provider store={store}>
           <TodoInput />
         
