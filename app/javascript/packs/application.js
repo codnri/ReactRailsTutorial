@@ -9,4 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <App />, // 独自に記述した App クラス (../components/app.jsx)を指定
     document.getElementById('example-app')  // example-app をマウントポイントにする
   )
-})
+})// Support component names relative to this directory:
+var componentRequireContext = require.context("components", true)
+var ReactRailsUJS = require("react_ujs")
+ReactRailsUJS.useContext(componentRequireContext)

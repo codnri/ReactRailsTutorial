@@ -4,11 +4,8 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { TodoReducer } from "./TodoReducer";
-import TodoInput from "./TodoInput";
+// import TodoInput from "./TodoInput";
 import { TodoList } from "./TodoList";
-import $ from "jquery";
-
-
 // import "./styles.css";
 
 
