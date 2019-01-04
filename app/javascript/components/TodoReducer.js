@@ -3,6 +3,18 @@ const initialState = {
 };
 export const TodoReducer = (state = initialState, action) => {
   switch (action.type) {
+    
+    
+    case 'UPDATE_TODO':
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+    case 'UPDATE_TODO_SUCCESS':
+    return Object.assign({}, state, {
+      isFetching: false,
+    });
+    
+    
     case 'ADD_NEW_TODO':
     return Object.assign({}, state, {
       isFetching: true

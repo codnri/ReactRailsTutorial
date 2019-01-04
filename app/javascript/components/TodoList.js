@@ -15,18 +15,27 @@ export class TodoList extends React.Component {
   };
   clickEditLink = e => {
     console.log("edit_todo");
-    let clicked_index = e.target.parentNode.id;
-    console.log(clicked_index);
+    let clicked_index = e.target.parentNode.parentNode.id;
+    console.log(this.props);
     let edit_todo = this.props.todoList[clicked_index];
     console.log(edit_todo);
     this.setState(() => ({ selectedTodo: edit_todo }));
   };
+  clickCheckTodo = e =>{
+    let clicked_index = e.target.parentNode.parentNode.id;
+    console.log(clicked_index)
+    let modified_completed_todo = this.props.todoList[clicked_index];
+    modified_completed_todo.is_completed = !modified_completed_todo.is_completed
+    this.props.updateTodoRequest(modified_completed_todo)
+
+  }
   render() {
     return (
       <div>
         <EditModal
           selectedTodo={this.state.selectedTodo}
           handleClearSelectedTodo={this.handleClearSelectedTodo}
+          updateTodoRequest={this.props.updateTodoRequest}
         />
 
         <table className="table">
@@ -50,19 +59,19 @@ export class TodoList extends React.Component {
             </tr>
             {this.props.todoList.map((todo, index) => {
               return (
-                <tr key={index}>
+                <tr key={index} id={index}>
                   <th scope="row">
                     {todo.is_completed ? (
-                      <i className="far fa-check-square" />
+                      <i className="far fa-check-square" onClick={this.clickCheckTodo}/>
                     ) : (
-                      <i className="far fa-square" />
+                      <i className="far fa-square" onClick={this.clickCheckTodo}/>
                     )}
                   </th>
                   <td>{todo.subject}</td>
                   <td>{todo.description}</td>
-                  <td id={index}>
+                  <td >
                     <a href="javascript:void(0);" onClick={this.clickEditLink}>
-                      Edit
+                      Edit&nbsp;
                     </a>
                     | Del
                   </td>
