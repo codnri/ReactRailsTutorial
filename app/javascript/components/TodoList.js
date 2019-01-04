@@ -13,18 +13,37 @@ export class TodoList extends React.Component {
   handleClearSelectedTodo = () => {
     this.setState(() => ({ selectedTodo: undefined }));
   };
+  
+  
+  
+  clickDeleteLink = e => {
+    var result = confirm("Are you sure you want to delete this item?");
+    let clicked_index = e.target.parentNode.parentNode.id;
+    if (result) {
+      //Logic to delete the item
+      console.log("del_todo");
+      console.log(clicked_index);
+      this.props.deleteTodoRequest(clicked_index)
+    }
+    
+    
+ 
+ //   
+ 
+  };
+  
   clickEditLink = e => {
     console.log("edit_todo");
     let clicked_index = e.target.parentNode.parentNode.id;
     console.log(this.props);
-    let edit_todo = this.props.todoList[clicked_index];
+    let edit_todo = this.props.todoList.find((el)=>{return el.id ==clicked_index } );
     console.log(edit_todo);
     this.setState(() => ({ selectedTodo: edit_todo }));
   };
   clickCheckTodo = e =>{
     let clicked_index = e.target.parentNode.parentNode.id;
     console.log(clicked_index)
-    let modified_completed_todo = this.props.todoList[clicked_index];
+    let modified_completed_todo = this.props.todoList.find((el)=>{return el.id ==clicked_index } );
     modified_completed_todo.is_completed = !modified_completed_todo.is_completed
     this.props.updateTodoRequest(modified_completed_todo)
 
@@ -59,7 +78,7 @@ export class TodoList extends React.Component {
             </tr>
             {this.props.todoList.map((todo, index) => {
               return (
-                <tr key={index} id={index}>
+                <tr key={index} id={todo.id}>
                   <th scope="row">
                     {todo.is_completed ? (
                       <i className="far fa-check-square" onClick={this.clickCheckTodo}/>
@@ -73,7 +92,11 @@ export class TodoList extends React.Component {
                     <a href="javascript:void(0);" onClick={this.clickEditLink}>
                       Edit&nbsp;
                     </a>
-                    | Del
+                    |&nbsp;
+                    <a href="javascript:void(0);" onClick={this.clickDeleteLink}>
+                      Del
+                    </a>
+                     
                   </td>
                 </tr>
               );

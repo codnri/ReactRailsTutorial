@@ -4,6 +4,15 @@ const initialState = {
 export const TodoReducer = (state = initialState, action) => {
   switch (action.type) {
     
+
+    case 'DELETE_TODO':
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+    case 'DELETE_TODO_SUCCESS':
+    return Object.assign({}, state, {
+      isFetching: false,
+    });
     
     case 'UPDATE_TODO':
     return Object.assign({}, state, {

@@ -1,37 +1,31 @@
 import {fetchTodos} from './GetRequestActions'
 import axios from 'axios'
 
-function updateTodo() {
+function deleteTodo() {
     return {
-      type: 'UPDATE_TODO',
+      type: 'DELETE_TODO',
     };
   }
-  function updateTodoSuccess() {
+  function deleteTodoSuccess() {
     return {
-      type: 'UPDATE_TODO_SUCCESS',
+      type: 'DELETE_TODO_SUCCESS',
     };
   }
   // メッセージ送信
-  export default function updateTodoRequest(todoBody) {
-    let update_id = todoBody.id
-    let sendBody = {"subject":todoBody.subject,"description":todoBody.description,"is_completed":todoBody.is_completed}
-    console.log("sendBody")
-    console.log(sendBody)
+  export default function deleteTodoRequest(delete_id) {
+    // let delete_id = todoBody.id
+    // let sendBody = {"subject":todoBody.subject,"description":todoBody.description,"is_completed":todoBody.is_completed}
+    // console.log("sendBody")
+    // console.log(sendBody)
+    console.log("deleteTodoRequest")
+    console.log(delete_id)
     return dispatch => {
-      dispatch(updateTodo())
+      dispatch(deleteTodo())
       
-      let config = {
-        headers: {
-        'X-HTTP-Method-Override': 'PUT'
-        }
-      }
-      return axios.post('api/v1/todos/'+update_id,
-        {
-          todo: {...sendBody}
-        }, config //,{withCredentials:false}
-      ).then((response) => {
+      return axios.delete('api/v1/todos/'+delete_id).then(
+        (response) => {
           dispatch(fetchTodos())
-          dispatch(updateTodoSuccess())
+          dispatch(deleteTodoSuccess())
         }).catch((response) => {
           console.log(response)
         })

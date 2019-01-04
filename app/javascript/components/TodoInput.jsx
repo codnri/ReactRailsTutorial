@@ -5,6 +5,7 @@ import { TodoList } from "./TodoList";
 import { fetchTodos } from './GetRequestActions';
 import { postTodo } from './PostRequestActions';
 import  updateTodoRequest  from './UpdateRequestActions';
+import  deleteTodoRequest  from './DeleteRequestActions';
 
 const addTodo = todo => {
   let tmp_todo = { ...todo };
@@ -92,7 +93,11 @@ export class TodoInput extends React.Component {
         </div>
         <br />
         <br />
-        <TodoList todoList={this.props.todoState.todoList} updateTodoRequest={this.props.updateTodoRequest}/>
+        <TodoList 
+          todoList={this.props.todoState.todoList}
+          updateTodoRequest={this.props.updateTodoRequest}
+          deleteTodoRequest={this.props.deleteTodoRequest}
+        />
       </div>
     );
   }
@@ -113,6 +118,8 @@ const mapDispatchToProps = dispatch => {
     fetchTodos: () => dispatch(fetchTodos()),
     postTodo: (todo) => dispatch(postTodo(todo)),
     updateTodoRequest: (todo) => dispatch(updateTodoRequest(todo)),
+    deleteTodoRequest: (todo) => dispatch(deleteTodoRequest(todo)),
+    
     // onClickMinus: () => dispatch(actionDecrementAsync()),
   };
 };

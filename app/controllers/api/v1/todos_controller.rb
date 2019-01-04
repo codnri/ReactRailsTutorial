@@ -1,4 +1,5 @@
 class Api::V1::TodosController < ApplicationController
+
   before_action :set_todo, only: [
     :show, :update, :destroy
   ]
@@ -30,7 +31,7 @@ class Api::V1::TodosController < ApplicationController
 
   def todo_params
     # params.permit(:subject, :description,:is_completed)
-    params.require(:todo).permit(:subject, :description,:is_completed)
+    params.require(:todo).permit(:subject, :description,:is_completed,:id)
     
 
   end
