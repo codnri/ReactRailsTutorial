@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import uuid from "uuid";
+// import uuid from "uuid";
 import { TodoList } from "./TodoList";
 import { fetchTodos } from './GetRequestActions';
 import { postTodo } from './PostRequestActions';
@@ -63,41 +63,55 @@ export class TodoInput extends React.Component {
   };
   render() {
     return (
-      <div>
-        <div className="form-horizontal">
-          <div className="form-group">
-            <label className="control-label col-xs-2">subject: </label>
-            <input
-              type="text"
-              value={this.state.todo.subject}
-              onChange={this.onChangeSubject}
-            />
-          </div>
+      <div className="container">
+      
+        <div className="row align-center">
+          <div className="form-horizontal col-sm-6">
+            <div className="form-group row">
+              <label  htmlFor="inputsubject" className="col-sm-2 col-form-label">Subject:</label>
+              <div class="col-sm-10">
+                <input
+                  id="inputsubject"
+                  type="text"
+                  value={this.state.todo.subject}
+                  onChange={this.onChangeSubject}
+                  className="form-control"
+                />
+              </div>
+            </div>
+  
+            <div className="form-group row">
+              <label htmlFor="inputdescription" className="col-sm-2 col-form-label">Detail:</label>
+              <div class="col-sm-10">
+                <textarea
+                  id="inputdescription"
+                  type="text"
+                  value={this.state.todo.description}
+                  onChange={this.onChangeDescription}
+                  className="form-control"
 
-          <div className="form-group">
-            <label className="control-label col-xs-2">detail:</label>
-            <textarea
-              type="text"
-              value={this.state.todo.description}
-              onChange={this.onChangeDescription}
-            />
+                />
+              </div>  
+            </div>
           </div>
-        </div>
-        <div className="float-right">
-          <button
-            onClick={this.clickAddButton}
-            className="btn btn-primary btn-sm"
-          >
-            Create
-          </button>
-        </div>
-        <br />
+          <div className="botton-area d-flex align-items-end pb-3">
+            <button
+              onClick={this.clickAddButton}
+              className="btn btn-primary btn-lg"
+            >
+              Create
+            </button>
+          </div>  
+        </div> 
+        
+        
         <br />
         <TodoList 
           todoList={this.props.todoState.todoList}
           updateTodoRequest={this.props.updateTodoRequest}
           deleteTodoRequest={this.props.deleteTodoRequest}
         />
+        
       </div>
     );
   }

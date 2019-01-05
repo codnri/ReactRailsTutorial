@@ -54,31 +54,44 @@ export class EditModal extends React.Component {
         isOpen={!!this.props.selectedTodo}
         contentLabel="shown modal"
         onRequestClose={this.props.handleClearSelectedTodo}
-  
+        className="Modal"
+        overlayClassName="Overlay"
         // onHide={this.props.handleHideModal}
         // animation={true}
         // bsSize="small"
       >
-        <h3>Edit Todo Modal</h3>
+        <h3>Edit Todo</h3>
         {this.props.selectedTodo && (
-          <div className="form-horizontal">
-            <div className="form-group">
-              <label className="control-label col-xs-2">subject: </label>
-              <input
-                type="text"
-                value={this.state.todo.subject}
-                onChange={this.onChangeSubject}
-              />
+        
+         <div className="form-horizontal col-sm-6">
+            <div className="form-group row">
+              <label  htmlFor="inputsubject" className="col-sm-2 col-form-label">Subject:</label>
+              <div class="col-sm-10">
+                <input
+                  id="inputsubject"
+                  type="text"
+                  value={this.state.todo.subject}
+                  onChange={this.onChangeSubject}
+                  className="form-control"
+                />
+              </div>
             </div>
   
-            <div className="form-group">
-              <label className="control-label col-xs-2">detail:</label>
-              <textarea
-                value={this.state.todo.description}
-                onChange={this.onChangeDescription}
-              />
+            <div className="form-group row">
+              <label htmlFor="inputdescription" className="col-sm-2 col-form-label">Detail:</label>
+              <div class="col-sm-10">
+                <textarea
+                  id="inputdescription"
+                  type="text"
+                  value={this.state.todo.description}
+                  onChange={this.onChangeDescription}
+                  className="form-control"
+
+                />
+              </div>  
             </div>
           </div>
+          
         )}
         <button
           onClick={this.clickUpdateButton}

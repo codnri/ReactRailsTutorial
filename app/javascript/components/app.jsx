@@ -7,6 +7,7 @@ import { TodoReducer } from "./TodoReducer";
 import TodoInput from "./TodoInput";
 import { TodoList } from "./TodoList";
 import $ from "jquery";
+import './app.css';
 
 
 // import "./styles.css";
@@ -22,7 +23,7 @@ const App = () => {
           <h1>Todo App</h1>
           <h2>What are you going to do today?</h2>
         </div>
-          
+        <br/>
         <Provider store={store}>
           <TodoInput />
         

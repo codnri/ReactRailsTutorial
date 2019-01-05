@@ -55,6 +55,7 @@ export class TodoList extends React.Component {
           selectedTodo={this.state.selectedTodo}
           handleClearSelectedTodo={this.handleClearSelectedTodo}
           updateTodoRequest={this.props.updateTodoRequest}
+
         />
 
         <table className="table">
@@ -62,20 +63,11 @@ export class TodoList extends React.Component {
             <tr>
               <th scope="col">Done?</th>
               <th scope="col">Subject</th>
-              <th scope="col">Summary</th>
+              <th scope="col">Detail</th>
               <th scope="col">action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">
-                <i className="far fa-check-square" />
-                <i className="far fa-square" />
-              </th>
-              <td>Go to gym</td>
-              <td>2:00.p.m going to the gym on Victoria S...</td>
-              <td>Edit | Del</td>
-            </tr>
             {this.props.todoList.map((todo, index) => {
               return (
                 <tr key={index} id={todo.id}>
