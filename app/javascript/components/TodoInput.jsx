@@ -37,20 +37,30 @@ export class TodoInput extends React.Component {
   clickResetButton = e => {
     this.props.resetTodo();
   };
-  clickAddButton = e => {
-    // console.log(this.state);
-    // console.log(this.props);
-    // this.props.addTodo(this.state.todo);
-    this.props.postTodo(this.state.todo)
-    this.setState({ todo: {
-        subject: "",
-        description: "",
-        is_completed: false,
-        id: ""
-      }
-    });
+  
 
-  };
+  clickAddButton = e => {
+    
+    let isBlank=(val)=>{
+      return (val == null || val === "");
+    }
+    if(isBlank(this.state.todo.subject)||isBlank(this.state.todo.description)){//temporary validation
+      alert("Subject and Dtail are required")
+    }else{
+      this.props.postTodo(this.state.todo)
+      this.setState({ todo: {
+          subject: "",
+          description: "",
+          is_completed: false,
+          id: ""
+        }
+      })  
+    }
+    
+    
+    
+
+  }
   onChangeSubject = e => {
     let tmp_todo = { ...this.state.todo };
     tmp_todo.subject = e.target.value;
