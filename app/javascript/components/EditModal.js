@@ -29,12 +29,21 @@ export class EditModal extends React.Component {
   }
   clickUpdateButton=(e)=>{
     // alert("yo-")
-    console.log("this.props")
-    console.log(this.props)
-    console.log("this.state")
-    console.log(this.state)
-    this.props.updateTodoRequest(this.state.todo)
-    this.props.handleClearSelectedTodo()
+    // console.log("this.props")
+    // console.log(this.props)
+    // console.log("this.state")
+    // console.log(this.state)
+    let isBlank=(val)=>{
+      return (val == null || val === "");
+    }
+    if(isBlank(this.state.todo.subject)||isBlank(this.state.todo.description)){//temporary validation
+      alert("Subject and Dtail are required")
+    }else{
+      this.props.updateTodoRequest(this.state.todo)
+      this.props.handleClearSelectedTodo()  
+    }
+
+    
   }
   
   onChangeSubject = e => {
